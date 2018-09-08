@@ -1,4 +1,5 @@
-﻿using CursoOnline.Dominio.Cursos;
+﻿using Bogus;
+using CursoOnline.Dominio.Cursos;
 using Moq;
 using Xunit;
 
@@ -6,28 +7,37 @@ namespace CursoOnline.DominioTest.Cursos
 {
     public class ArmazenadorCursoTest
     {
+        private CursoDto _cursoDto;
+        private Mock<ICursoRepositorio> _cursoRepositorioMock;
+        private ArmazenadorCurso _armazenadorCurso;
+
         public ArmazenadorCursoTest()
         {
+            var fake = new Faker();
+
+            _cursoDto = new CursoDto
+            {
+                Nome = fake.Random.Word(),
+                Descricao = fake.Lorem.Paragraph(),
+                CargaHoraria = fake.Random.Double(10, 100),
+                PublicoAlvo = PublicoAlvoEnum.Empreendedor,
+                Valor = fake.Random.Decimal(100, 1000)
+            };
+
+            _cursoRepositorioMock = new Mock<ICursoRepositorio>();
+            _armazenadorCurso = new ArmazenadorCurso(_cursoRepositorioMock.Object);
         }
 
         [Fact]
         public void DeveAdicionarCurso()
         {
-            var cursoDto = new CursoDto
-            {
-                Nome = "Curso A",
-                Descricao = "Descrição",
-                CargaHoraria = 80,
-                PublicoAlvo = PublicoAlvoEnum.Empreendedor,
-                Valor = 850
-            };
+            _armazenadorCurso.Armazenar(_cursoDto);
 
-            var cursoRepositorioMock = new Mock<ICursoRepositorio>();
-            var armazenadorCurso = new ArmazenadorCurso(cursoRepositorioMock.Object);
-
-            armazenadorCurso.Armazenar(cursoDto);
-
-            cursoRepositorioMock.Verify(x => x.Adicionar(It.IsAny<Curso>()));
+            _cursoRepositorioMock.Verify(x => x.Adicionar(It.Is<Curso>(y =>
+                                                                      y.Nome == _cursoDto.Nome
+                                                                      && y.Descricao == _cursoDto.Descricao
+                                                                      && Equals(y.CargaHoraria, _cursoDto.CargaHoraria)))
+                                                                      , Times.AtMostOnce);
         }
     }
 
@@ -57,7 +67,7 @@ namespace CursoOnline.DominioTest.Cursos
     {
         public string Nome { get; set; }
         public string Descricao { get; set; }
-        public int CargaHoraria { get; set; }
+        public double CargaHoraria { get; set; }
         public PublicoAlvoEnum PublicoAlvo { get; set; }
         public decimal Valor { get; set; }
     }
