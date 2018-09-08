@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoOnline.DominioTest", "test\CursoOnline.DominioTest\CursoOnline.DominioTest.csproj", "{F04D98F9-9168-49EA-BB3B-0F4816B53A7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoOnline.Dominio", "src\CursoOnline.Dominio\CursoOnline.Dominio.csproj", "{E610484F-8F25-4E84-A683-5FBB31E80034}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F04D98F9-9168-49EA-BB3B-0F4816B53A7F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F04D98F9-9168-49EA-BB3B-0F4816B53A7F}.Debug|x86.Build.0 = Debug|Any CPU
+		{F04D98F9-9168-49EA-BB3B-0F4816B53A7F}.Release|x86.ActiveCfg = Release|Any CPU
+		{F04D98F9-9168-49EA-BB3B-0F4816B53A7F}.Release|x86.Build.0 = Release|Any CPU
+		{E610484F-8F25-4E84-A683-5FBB31E80034}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E610484F-8F25-4E84-A683-5FBB31E80034}.Debug|x86.Build.0 = Debug|Any CPU
+		{E610484F-8F25-4E84-A683-5FBB31E80034}.Release|x86.ActiveCfg = Release|Any CPU
+		{E610484F-8F25-4E84-A683-5FBB31E80034}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
