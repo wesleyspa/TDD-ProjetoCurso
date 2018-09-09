@@ -1,5 +1,8 @@
-﻿using Bogus;
+﻿using System;
+using Bogus;
 using CursoOnline.Dominio.Cursos;
+using CursoOnline.DominioTest._Builders;
+using CursoOnline.DominioTest._Utils;
 using Moq;
 using Xunit;
 
@@ -20,7 +23,7 @@ namespace CursoOnline.DominioTest.Cursos
                 Nome = fake.Random.Word(),
                 Descricao = fake.Lorem.Paragraph(),
                 CargaHoraria = fake.Random.Double(10, 100),
-                PublicoAlvo = PublicoAlvoEnum.Empreendedor,
+                PublicoAlvo = "Empreendedor",
                 Valor = fake.Random.Decimal(100, 1000)
             };
 
@@ -39,36 +42,23 @@ namespace CursoOnline.DominioTest.Cursos
                                                                       && Equals(y.CargaHoraria, _cursoDto.CargaHoraria)))
                                                                       , Times.AtMostOnce);
         }
-    }
 
-    public interface ICursoRepositorio
-    {
-        void Adicionar(Curso curso);
-        void Atualizar(Curso curso);
-    }
-
-    public class ArmazenadorCurso
-    {
-        private ICursoRepositorio _cursoRepositorio;
-
-        public ArmazenadorCurso(ICursoRepositorio cursoRepositorio)
+        [Fact]
+        public void NaoDeveInformarPublicoAlvoInvalido()
         {
-            this._cursoRepositorio = cursoRepositorio;
+            var publicoAlvoInvalido = "Medico";
+            _cursoDto.PublicoAlvo = publicoAlvoInvalido;
+
+            Assert.Throws<ArgumentException>(() => _armazenadorCurso.Armazenar(_cursoDto)).ComMensagem("Publico Alvo inválido!");
         }
 
-        public void Armazenar(CursoDto cursoDto)
+        [Fact]
+        public void NaoDeveAdicionarCursoComNomeJaExistente()
         {
-            var curso = new Curso(cursoDto.Nome, cursoDto.Descricao, cursoDto.CargaHoraria, cursoDto.PublicoAlvo, cursoDto.Valor);
-            _cursoRepositorio.Adicionar(curso);
-        }
-    }
+            var cursoJaSalvo = CursoBuilder.Novo().ComNome(_cursoDto.Nome).Build();
+            _cursoRepositorioMock.Setup(r => r.ObterPeloNome(_cursoDto.Nome)).Returns(cursoJaSalvo);
 
-    public class CursoDto
-    {
-        public string Nome { get; set; }
-        public string Descricao { get; set; }
-        public double CargaHoraria { get; set; }
-        public PublicoAlvoEnum PublicoAlvo { get; set; }
-        public decimal Valor { get; set; }
+            Assert.Throws<ArgumentException>(() => _armazenadorCurso.Armazenar(_cursoDto)).ComMensagem("Nome do curso já consta no banco de dados!");
+        }
     }
 }
