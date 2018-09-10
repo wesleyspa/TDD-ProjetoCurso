@@ -5,6 +5,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoOnline.DominioTest", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoOnline.Dominio", "src\CursoOnline.Dominio\CursoOnline.Dominio.csproj", "{E610484F-8F25-4E84-A683-5FBB31E80034}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoOnline.Dados", "CursoOnline.Dados\CursoOnline.Dados.csproj", "{13702671-1F23-4504-97B0-7CAE6BA8E1F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoOnline.Web", "CursoOnline.Web\CursoOnline.Web.csproj", "{8FAF1864-E150-4F46-892C-49E83EDBBECE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoOnline.IoC", "CursoOnline.IoC\CursoOnline.IoC.csproj", "{7D8C8D19-A2B6-40B3-A49B-662246534B2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -19,5 +25,17 @@ Global
 		{E610484F-8F25-4E84-A683-5FBB31E80034}.Debug|x86.Build.0 = Debug|Any CPU
 		{E610484F-8F25-4E84-A683-5FBB31E80034}.Release|x86.ActiveCfg = Release|Any CPU
 		{E610484F-8F25-4E84-A683-5FBB31E80034}.Release|x86.Build.0 = Release|Any CPU
+		{13702671-1F23-4504-97B0-7CAE6BA8E1F1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{13702671-1F23-4504-97B0-7CAE6BA8E1F1}.Debug|x86.Build.0 = Debug|Any CPU
+		{13702671-1F23-4504-97B0-7CAE6BA8E1F1}.Release|x86.ActiveCfg = Release|Any CPU
+		{13702671-1F23-4504-97B0-7CAE6BA8E1F1}.Release|x86.Build.0 = Release|Any CPU
+		{8FAF1864-E150-4F46-892C-49E83EDBBECE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8FAF1864-E150-4F46-892C-49E83EDBBECE}.Debug|x86.Build.0 = Debug|Any CPU
+		{8FAF1864-E150-4F46-892C-49E83EDBBECE}.Release|x86.ActiveCfg = Release|Any CPU
+		{8FAF1864-E150-4F46-892C-49E83EDBBECE}.Release|x86.Build.0 = Release|Any CPU
+		{7D8C8D19-A2B6-40B3-A49B-662246534B2E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7D8C8D19-A2B6-40B3-A49B-662246534B2E}.Debug|x86.Build.0 = Debug|Any CPU
+		{7D8C8D19-A2B6-40B3-A49B-662246534B2E}.Release|x86.ActiveCfg = Release|Any CPU
+		{7D8C8D19-A2B6-40B3-A49B-662246534B2E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
